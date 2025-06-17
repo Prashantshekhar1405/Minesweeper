@@ -1,0 +1,62 @@
+/* Board Container */
+#board {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 320px;
+    padding: 10px;
+    margin: 30px auto;
+    border: 3px solid #444;
+    background-color: #5f5c5c;
+    box-shadow: 0 4px 12px rgba(42, 42, 42, 0.4);
+    border-radius: 10px;
+}
+
+/* Each Cell */
+.cell {
+    width: 30px;
+    height: 30px;
+    background-color: #cbc6c6;
+    border: 1px solid #444;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+/* Hover effect for unrevealed cells */
+.cell:not(.revealed):hover {
+    background-color: #999;
+    transform: scale(1.05);
+}
+
+/* Revealed cell */
+.cell.revealed {
+    background-color: #ddd;
+    border: 1px solid #bbb;
+    color: #222;
+    animation: revealAnim 0.2s ease;
+}
+
+/* Flag */
+.cell::after {
+    font-size: 18px;
+}
+
+/* Reveal animation */
+@keyframes revealAnim {
+    from {
+        background-color: #999;
+        transform: scale(1.1);
+    }
+    to {
+        background-color: #ddd;
+        transform: scale(1);
+    }
+}
