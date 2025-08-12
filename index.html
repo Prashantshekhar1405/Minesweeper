@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MineSweeper</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="timer">
+      <div class="stopwatch">
+        <span id="minutes">00</span>:<span id="seconds">00</span>:<span id="milliseconds">000</span>
+      </div>
+      <div class="status">
+        <span id="status-now">let's play</span>
+      </div>
+    </div>
     <div id="board"></div>
-    <!-- <button >Restart</button> -->
+    <div class="btns">
+      <button class="restart">Restart</button>
+    </div>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>

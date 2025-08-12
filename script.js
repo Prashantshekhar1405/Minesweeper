@@ -4,6 +4,12 @@ const board = [];
 const boardElement = document.getElementById('board');
 const safecell = boardsize * boardsize - mines;
 const blastSound = new Audio('./sounds/mixkit-arcade-game-explosion-2759.wav');
+const restartbutton = document.querySelector('.restart');
+let firstClick = false;
+let running = false;
+let startTime , updatedTime , TimeInterval , difference;
+let savedTime = 0;
+let status = false;
 
 function init() {
     for(let r = 0; r < boardsize; r++){
@@ -67,6 +73,11 @@ function calculateAdjacentmines(){
 let isReaveledSafecell = 0;
 
 function handdleClick(r , c){
+    if(!firstClick) {
+        StartTimer();
+        firstClick = true;
+        document.getElementById("status-now").textContent = "Game Started";
+    }
     const cell = board[r][c];
     if(cell.isReaveled || cell.isFlaged) return;
 
@@ -86,7 +97,8 @@ function handdleClick(r , c){
                 }
             }
         }
-        alert("💥 game Over");
+        StopTimer();
+        document.getElementById("status-now").textContent = "Game Over";
         return;
     }
 
@@ -111,24 +123,59 @@ function handdleClick(r , c){
     }
 }
 function ToggleFlag(r , c){
+    if(!firstClick) {
+        StartTimer();
+        firstClick = true;
+    }
     const cell = board[r][c];
     if(cell.isReaveled) return;
 
     cell.isFlaged = !cell.isFlaged;
     cell.element.textContent = cell.isFlaged ? '🚩' : '';
 }
-// function Reavealallmines(){
-   
-// }
-// function logMinePositions() {
-//     console.log("💣 Mine Positions:");
-//     for (let r = 0; r < boardsize; r++) {
-//         for (let c = 0; c < boardsize; c++) {
-//             if (board[r][c].ismine) {
-//                 console.log(`Mine at: (${r}, ${c})`);
-//             }
-//         }
-//     }
-// }
+
+restartbutton.addEventListener('click', () => {
+    boardElement.innerHTML = '';
+    isReaveledSafecell = 0;
+    init();
+    ResetTimer();
+    firstClick = false;
+    document.getElementById("status-now").textContent = "lets play";
+});
 init();
-// logMinePositions();
+
+function StartTimer() {
+    if(!running){
+        startTime = new Date().getTime() - savedTime;
+       
+        TimeInterval = setInterval(updateTime , 1);
+        running = true;
+    }
+}
+function ResetTimer() {
+    clearInterval(TimeInterval);
+    running = false;
+    savedTime = 0;
+
+    document.getElementById("minutes").innerHTML = "00";
+    document.getElementById("seconds").innerHTML = "00"
+    document.getElementById("milliseconds").innerHTML = "000";
+}
+function StopTimer() {
+    if(running){
+        clearInterval(TimeInterval);
+        savedTime = new Date().getTime() - startTime;
+        running = false;  
+    }
+}
+function updateTime() {
+    updatedTime = new Date().getTime();
+    difference =  updatedTime - startTime;
+    let minutes = Math.floor(difference / 60000);
+    let seconds = Math.floor((difference % 60000) / 1000);
+    let milliseconds = difference % 1000;
+
+    document.getElementById("minutes").innerHTML = minutes.toString().padStart(2 , 0);
+    document.getElementById("seconds").innerHTML = seconds.toString().padStart(2 , 0);
+    document.getElementById("milliseconds").innerHTML = milliseconds.toString().padStart(3 , 0);
+}

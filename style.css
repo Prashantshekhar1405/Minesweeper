@@ -1,3 +1,25 @@
+.timer {
+    display: flex;
+    justify-content:space-between;
+    margin-bottom:20px;
+    width: 320px;
+    margin:30px auto;
+}
+.stopwatch {
+    display: inline-flex;
+    border: 2px solid black;
+    padding: 7px;
+    border-radius: 5px;
+    font-size: larger;
+}
+#status-now {
+    display: inline-flex;
+    border: 2px solid black;
+    padding: 7px;
+    border-radius: 5px;
+    font-size: larger;
+    margin-left: 20px;
+}
 /* Board Container */
 #board {
     display: flex;
@@ -48,7 +70,21 @@
 .cell::after {
     font-size: 18px;
 }
-
+.btns{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.restart {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #444;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
 /* Reveal animation */
 @keyframes revealAnim {
     from {
