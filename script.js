@@ -76,7 +76,7 @@ function handdleClick(r , c){
     if(!firstClick) {
         StartTimer();
         firstClick = true;
-        document.getElementById("status-now").textContent = "Game Started";
+        document.getElementById("status-now").innerHTML = `<img class = "status-img" src = "https://media0.giphy.com/media/v1.Y2lkPTZjMDliOTUycjQzbDdtd3gzY3BhbjRzOXY5c2p4aTZ4cXo3MHpvZWZtbnJ4dnc4NSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/Xn2xCPbUeDYKFtU1YT/source.gif" >`;
     }
     const cell = board[r][c];
     if(cell.isReaveled || cell.isFlaged) return;
@@ -140,7 +140,7 @@ restartbutton.addEventListener('click', () => {
     init();
     ResetTimer();
     firstClick = false;
-    document.getElementById("status-now").textContent = "lets play";
+    document.getElementById("status-now").textContent = "let's play";
 });
 init();
 

@@ -11,6 +11,8 @@
     padding: 7px;
     border-radius: 5px;
     font-size: larger;
+    height: 30px;
+    align-items: center;
 }
 #status-now {
     display: inline-flex;
@@ -19,6 +21,13 @@
     border-radius: 5px;
     font-size: larger;
     margin-left: 20px;
+    height: 30px;
+    align-items: center;
+}
+.status-img {
+    width: 30px;
+    height: 30px;
+    background-color: grey;
 }
 /* Board Container */
 #board {
