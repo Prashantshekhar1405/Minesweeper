@@ -5,6 +5,7 @@ const boardElement = document.getElementById('board');
 const safecell = boardsize * boardsize - mines;
 const blastSound = new Audio('./sounds/mixkit-arcade-game-explosion-2759.wav');
 const restartbutton = document.querySelector('.restart');
+let gameOver = false;
 let firstClick = false;
 let running = false;
 let startTime , updatedTime , TimeInterval , difference;
@@ -73,6 +74,11 @@ function calculateAdjacentmines(){
 let isReaveledSafecell = 0;
 
 function handdleClick(r , c){
+
+    if(gameOver == true) {
+        return;
+    }
+
     if(!firstClick) {
         StartTimer();
         firstClick = true;
@@ -97,6 +103,7 @@ function handdleClick(r , c){
                 }
             }
         }
+        gameOver = true;
         StopTimer();
         document.getElementById("status-now").textContent = "Game Over";
         return;
@@ -140,6 +147,7 @@ restartbutton.addEventListener('click', () => {
     init();
     ResetTimer();
     firstClick = false;
+    gameOver = false;
     document.getElementById("status-now").textContent = "let's play";
 });
 init();
